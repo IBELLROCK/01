@@ -1,0 +1,66 @@
+import tkinter as tk
+ #ขนาดของหน้าต่างโปรแกรม
+windows = tk.Tk()
+windows.title('What')
+windows.minsize(width = 700, height = 500)                                 
+
+#ข้อความ title
+title_lable = tk.Label(master = windows, text='Calculate What?', fg="#FF0000",font=20).place(x=15, y=10)
+
+#ADD
+def add_data():
+    global show
+    show_number = number.get()
+    show = tk.Label(master = windows,text = show_number)
+    show.pack()
+
+sum = 0
+avg = 0
+max = 0
+#OK  
+def calculate():
+    global sum
+    global show
+    global last_number
+    global number
+    global max
+    last_number = number.get()
+    cntSum = len(last_number)
+    for i in range(cntSum):
+        sum = sum + int(last_number[i])
+        if int(last_number[i]) > max:
+            max = int(last_number[i])
+    min = sum
+    for i in range (cntSum):
+        if int(last_number[i]) < min:
+            min = int(last_number[i])
+        
+        
+    avg = sum / cntSum
+    sum_label = tk.Label(master = windows, text = 'what is sum?: ' + str(sum))
+    sum_label.pack()
+    count_label = tk.Label(master = windows, text = 'what is cunt?: ' + str(cntSum))
+    count_label.pack()
+    avg_label = tk.Label(master = windows, text = 'what is AVG?: ' + str(avg))
+    avg_label.pack()
+    Max_label = tk.Label(master = windows, text = 'what is MAX?: ' + str(max))
+    Max_label.pack()
+    min_label = tk.Label(master = windows, text = 'what is min?: ' + str(min))
+    min_label.pack()
+
+
+#กล้องข้อความ
+number = tk.StringVar()
+numeber_lable = tk.Entry(master = windows,textvariable = number).place(x=15, y=45)
+#ADD
+Add_butter = tk.Button(master = windows,text='ADD',command = add_data).place(x=15, y=80,)
+#ok
+ok_butter = tk.Button(master = windows, text='OK',command = calculate).place(x=100, y=80)
+clear_butter = tk.Button(master = windows, text='Clear').place(x=53 ,y=110)
+
+#แสดงผล
+ouput_lable = tk.Label(master = windows)
+
+
+
+windows.mainloop()
